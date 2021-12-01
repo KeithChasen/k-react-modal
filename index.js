@@ -8,20 +8,27 @@ import {
   ModalWrapper
 } from "./styles/skins";
 
-const Modal = () => {
-  return (
+const Modal = ({
+                 showModal = false,
+                 toggleModal,
+                 modalHeader,
+                 modalBody
+}) => {
+  return showModal ? (
     <>
-      <ModalBackground />
+      <ModalBackground
+        onClick={() => toggleModal(false)}
+      />
       <ModalWrapper>
-        <ModalHeader>Modal Header</ModalHeader>
-        <ModalBody>Modal Body</ModalBody>
+        <ModalHeader>${ modalHeader || `Modal Header` }</ModalHeader>
+        <ModalBody>${ modalBody || `Modal Body` }</ModalBody>
         <ModalButtonsWrapper>
-          <ModalButton>Confirm</ModalButton>
-          <ModalButton>Cancel</ModalButton>
+          <ModalButton onClick={() => toggleModal(false)}>Confirm</ModalButton>
+          <ModalButton onClick={() => toggleModal(false)}>Cancel</ModalButton>
         </ModalButtonsWrapper>
       </ModalWrapper>
     </>
-  );
+  ) : null;
 };
 
 export default Modal;
